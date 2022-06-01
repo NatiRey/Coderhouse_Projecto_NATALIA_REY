@@ -1,0 +1,26 @@
+{% extends "templates/index.html" %}
+{% load static %}
+{% block ARTYapp_content %}
+
+<h2>Artists list</h2>
+<a class="card_custom" href="{% url 'ARTYapp:ProfileDjangoForms' %}">N E W   P R O F I L E</a>
+<hr>
+</hr>
+<ul>
+    {% for profile in profiles %}
+    <li>
+        {{profile}}
+        (
+        <a href="{% url 'ARTYapp:UpdateProfile' profile.id %}">
+            <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"></i>
+        </a>
+        |
+        <a href="{% url 'ARTYapp:DeleteProfile' profile.id %}">
+            <i class="fa fa-trash" style="color: rgb(0, 0, 100);"></i>
+        </a>
+        )
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

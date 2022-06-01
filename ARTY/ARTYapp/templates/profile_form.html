@@ -1,0 +1,17 @@
+{% extends "templates/index.html" %}
+{% load static %}
+{% block ARTYapp_content %}
+
+<h2>P R O F I L E   E D I T {{profile.name}} </h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{ profile_form.as_p }}
+
+    <input type="submit" class="btn btn-primary" value="Submit" />
+
+</form>
+
+{% endblock %}

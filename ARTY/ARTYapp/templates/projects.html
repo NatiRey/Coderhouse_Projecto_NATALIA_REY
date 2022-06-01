@@ -1,0 +1,16 @@
+{% extends "templates/index.html" %}
+{% load static %}
+{% block ARTYapp_content %}
+
+<h2>Project list</h2>
+<hr></hr>
+<ul>
+    {% for project in projects %}
+        <li>
+            Project: {{project.project_name}} {{project.type}}
+            -- add_date: {{project.add_date}}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "ARTYapp/index.html" %}
+{% load static %}
+{% block ARTYapp_content %}
+
+<h2> S T O C K    F O R M</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{ stock_form.as_p }}
+
+    <input type="submit" class="btn btn-primary" value="Stock" />
+
+</form>
+
+{% endblock %}
