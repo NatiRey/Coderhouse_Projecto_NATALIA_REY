@@ -1,0 +1,19 @@
+{% extends "templates/index.html %}
+{% load static %}
+{% block ARTYapp_content %}
+
+<h2>Add atelier</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <table>
+        {{ atelier_form.as_table }}
+    </table>
+
+    <input type="submit" class="btn btn-primary" value="Add atelier" />
+
+</form>
+
+{% endblock %}

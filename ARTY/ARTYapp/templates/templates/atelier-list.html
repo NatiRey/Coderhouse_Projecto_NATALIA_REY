@@ -1,24 +1,24 @@
-{% extends "app_coder/index.html" %}
+{% extends "templates/index.html" %}
 {% load static %}
-{% block app_coder_content %}
+{% block ARTYapp_content %}
 
 <h2>Lista de Cursos</h2>
-<a class="card_custom" href="{% url 'app_coder:course-add' %}">Crear nuevo Curso</a>
+<a class="card_custom" href="{% url 'ARTYapp:atelier-add' %}">ADD ATELIER</a>
 <hr></hr>
 <ul>
-    {% for course in course_list %}
+    {% for atelier in atelier_list %}
     <li>
-        {{course}}
+        {{atelier}}
         (
-        <a href="{% url 'app_coder:course-detail' course.id %}">
+        <a href="{% url 'ARTYapp:atelier-detail' atelier.id %}">
             <i class="fa fa-eye" style="color: rgb(0, 0, 255);"> </i>
         </a>
         |
-        <a href="{% url 'app_coder:course-update' course.id %}">
+        <a href="{% url 'ARTYapp:atelier-update' atelier.id %}">
             <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"> </i>
         </a>
         |
-        <a href="{% url 'app_coder:course-delete' course.id %}">
+        <a href="{% url 'ARTYapp:atelier-delete' atelier.id %}">
             <i class="fa fa-trash" style="color: rgb(0, 0, 100);"> </i>
         </a>
         )

@@ -1,3 +1,5 @@
+import email
+from unicodedata import name
 from django.db import models
 
 class Profile(models.Model):
@@ -32,3 +34,11 @@ class Stock(models.Model):
     def __str__(self):
         available = 'Yes' if self.available else 'No'
         return f'Art piece: {self.Art_piece}, Type: {self.art_type} -- Available: {available} -- Price: {self.price} -- Description: {self.description}'
+
+    
+class Atelier(models.Model):
+    atelier = models.CharField(max_length=40)
+    adress = models.CharField(max_length=80)
+
+    def __str__(self):
+        return f'Atelier: {self.atelier}, {self.adress}'

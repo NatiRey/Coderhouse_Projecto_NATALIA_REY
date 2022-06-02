@@ -55,7 +55,7 @@ ROOT_URLCONF = 'ARTY.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'C:\Users\natir\Desktop\ARTY\ARTYapp\templates'],
+        'DIRS': [r'C:\Users\natir\Desktop\ARTY\ARTY\ARTYapp\templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

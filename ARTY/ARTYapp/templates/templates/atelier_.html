@@ -1,0 +1,17 @@
+{% extends "templates/index.html" %}
+{% load static %}
+{% block ARTYapp_content %}
+
+<h2>A T E L I E R   L I S T</h2>
+<a class="card_custom" href="{% url 'ARTYapp:AtelierDjangoForms' %}">A D D   A T E L I E R</a>
+<hr></hr>
+<ul>
+    {% for atelier in atelier_ %}
+        <li>
+            Atelier: {{atelier.atelier}}
+            -- Adress: {{atelier.adress}}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

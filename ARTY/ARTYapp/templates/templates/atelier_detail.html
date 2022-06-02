@@ -1,0 +1,10 @@
+{% extends "templates/index.html %}
+{% load static %}
+{% block ARTYapp_content %}
+
+<h2>Atelier detail</h2>
+<hr></hr>
+<p><h3>Atelier: {{ atelier.atelier }}</h3></p>
+<p><h4>Adress: {{ atelier.adress }}</h4></p>
+<p><a class="btn2 btn-primary" href="{% url 'ARTYapp:atelier-list' %}">BACK   TO   ATELIER  LIST</a></p>
+{% endblock %}

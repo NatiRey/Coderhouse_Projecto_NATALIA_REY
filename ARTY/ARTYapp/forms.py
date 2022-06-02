@@ -1,6 +1,6 @@
 from cProfile import label
 from django import forms
-from ARTYapp.models import Profile, Project, Stock
+from ARTYapp.models import Profile, Project, Stock, Atelier
 
 
 class Profile_form(forms.Form):
@@ -24,6 +24,6 @@ class Stock_form(forms.Form):
     price = forms.IntegerField(label='$')
     available = forms.BooleanField(label='Stock')
 
-    def __str__(self):
-        available = 'Yes' if self.available else 'No'
-        return f'Art piece: {self.Art_piece}, Type: {self.art_type} -- Available: {available} -- Price: {self.price} -- Description: {self.description}'
+class Atelier_form(forms.Form):
+    atelier = forms.CharField(max_length=40, label='Atelier/Artist')
+    adress = forms.CharField(max_length=80, label='Adress')

@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.forms.models import model_to_dict
 
-from ARTYapp.models import Profile, Project, Stock
-from ARTYapp.forms import Profile_form, Project_form, Stock_form
+from ARTYapp.models import Profile, Project, Stock, Atelier
+from ARTYapp.forms import Profile_form, Project_form, Stock_form, Atelier_form
 
 
 def index(request):
@@ -22,6 +22,19 @@ def profile(request):
         context=context_dict,
         template_name="templates/profiles.html"
     )
+
+
+def atelier_(request):
+    atelier_ = Atelier.objects.all()
+
+    context_dict = {
+        'atelier_': atelier_
+    }
+
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="templates/atelier_.html")
 
 def project(request):
     projects = Project.objects.all()
@@ -46,58 +59,58 @@ def stock(request):
     return render(
         request=request,
         context=context_dict,
-        template_name="template/stocks.html")
+        template_name="templates/stocks.html")
 
-#def form_hmtl(request):
-#
-#    if request.method == 'POST':
-#        project = Project(name=request.POST['name'], code=request.POST['code'])
-#        course.save()
+def form_hmtl(request):
 
-#        courses = Course.objects.all()
-#        context_dict = {
-#            'courses': courses
-#        }
+    if request.method == 'POST':
+        atelier = Project(name=request.POST['atelier'], code=request.POST['adress'])
+        atelier.save()
 
-#        return render(
-#            request=request,
-#            context=context_dict,
-#            template_name="app_coder/courses.html"
-#        )
+        atelier_ = Atelier.objects.all()
+        context_dict = {
+            'atelier': atelier_
+        }
 
-#    return render(
-#        request=request,
-#        template_name='app_coder/formHTML.html'
-#    )
+        return render(
+            request=request,
+            context=context_dict,
+            template_name="templates/atelier_.html"
+        )
+
+    return render(
+        request=request,
+        template_name='templates/formHTML.html'
+    )
 
 
-#def course_forms_django(request):
-#    if request.method == 'POST':
-#        course_form = CourseForm(request.POST)
-#        if course_form.is_valid():
-#            data = course_form.cleaned_data
-#            course = Course(name=data['name'], code=data['code'])
-#            course.save()
+def atelier_forms_django(request):
+    if request.method == 'POST':
+        atelier_form = Atelier_form(request.POST)
+        if atelier_form.is_valid():
+            data = atelier_form.cleaned_data
+            atelier = Atelier(name=data['atelier'], adress=data['adress'])
+            atelier.save()
 
-#            courses = Course.objects.all()
-#            context_dict = {
-#                'courses': courses
-#           }
-#            return render(
-#                request=request,
-#                context=context_dict,
-#                template_name="app_coder/courses.html"
-#            )
+            atelier_ = Atelier.objects.all()
+            context_dict = {
+                'atelier_': atelier_
+           }
+            return render(
+                request=request,
+                context=context_dict,
+                template_name="templates/atelier_.html"
+            )
 
-#    course_form = CourseForm(request.POST)
-#    context_dict = {
-#        'course_form': course_form
-#    }
-#    return render(
-#        request=request,
-#        context=context_dict,
-#        template_name='app_coder/course_django_forms.html'
-#    )
+    atelier_form = Atelier_form(request.POST)
+    context_dict = {
+       'atelier_form': atelier_form
+    }
+    return render(
+        request=request,
+        context=context_dict,
+        template_name='templates/atelier_django_forms.html'
+    )
 
 
 def profile_forms_django(request):
@@ -229,34 +242,33 @@ def stock_forms_django(request):
         template_name='templates/stock_django_forms.html'
     )
 
-'''
 def search(request):
     context_dict = dict()
     if request.GET['text_search']:
         search_param = request.GET['text_search']
-        courses = Course.objects.filter(name__contains=search_param)
+        atelier_ =  Atelier.objects.filter(name__contains=search_param)
         context_dict = {
-            'courses': courses
+            'atelier_': atelier_
         }
-    elif request.GET['code_search']:
-        search_param = request.GET['code_search']
-        courses = Course.objects.filter(code__contains=search_param)
+    elif request.GET['atelier_search']:
+        search_param = request.GET['atelier_search']
+        atelier_ = Atelier.objects.filter(code__contains=search_param)
         context_dict = {
-            'courses': courses
+            'atelier_': atelier_
         }
     elif request.GET['all_search']:
         search_param = request.GET['all_search']
         query = Q(name__contains=search_param)
         query.add(Q(code__contains=search_param), Q.OR)
-        courses = Course.objects.filter(query)
+        atelier_ = Atelier.objects.filter(query)
         context_dict = {
-            'courses': courses
+            'atelier_': atelier_
         }
 
     return render(
         request=request,
         context=context_dict,
-        template_name="app_coder/home.html",
+        template_name="templates/home.html",
     )
 
 from django.urls import reverse_lazy
@@ -265,33 +277,33 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-class CourseListView(ListView):
-    model = Course
-    template_name = "app_coder/course_list.html"
+class AtelierListView(ListView):
+    model = Atelier
+    template_name = "templates/atelier-list.html"
 
 
-class CourseDetailView(DetailView):
-    model = Course
-    template_name = "app_coder/course_detail.html"
+class AtelierDetailView(DetailView):
+    model = Atelier
+    template_name = "templates/atelier_detail.html"
 
 
-class CourseCreateView(CreateView):
-    model = Course
-    # template_name = "app_coder/course_form.html"
-    # success_url = "/app_coder/courses"
-    success_url = reverse_lazy('app_coder:course-list')
-    fields = ['name', 'code']
+class AtelierCreateView(CreateView):
+    model = Atelier
+    #template_name = "templates/atelier_form.html"
+    #success_url = "templates/atelier_"
+    success_url = reverse_lazy('templates:atelier-list')
+    fields = ['atelier', 'adress']
 
 
-class CourseUpdateView(UpdateView):
-    model = Course
-    # template_name = "app_coder/course_form.html"
-    # success_url = "/app_coder/courses"
-    success_url = reverse_lazy('app_coder:course-list')
-    fields = ['name', 'code']
+class AtelierUpdateView(UpdateView):
+    model = Atelier
+    # template_name = "templates/atelier_form.html"
+    # success_url = "templates/atelier_"
+    success_url = reverse_lazy('templates:atelier-list')
+    fields = ['atelier', 'adress']
 
 
-class CourseDeleteView(DeleteView):
-    model = Course
-    # success_url = "/app_coder/courses"
-    success_url = reverse_lazy('app_coder:course-list') '''
+class AtelierDeleteView(DeleteView):
+    model = Atelier
+    # success_url = "/ARTYapp/atelier_"
+    success_url = reverse_lazy('templates:atelier-list')

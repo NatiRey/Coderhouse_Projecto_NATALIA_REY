@@ -21,6 +21,6 @@ from ARTYapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='Home'),
-    path('ARTY/', include('ARTYapp.urls')),
+    path('ARTYapp/', include('ARTYapp.urls')),
 
 ]
