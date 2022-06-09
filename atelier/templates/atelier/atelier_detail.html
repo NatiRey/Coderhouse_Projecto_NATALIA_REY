@@ -1,0 +1,12 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block Arty_content %}
+
+<h2>Atelier detail</h2>
+<hr></hr>
+<p><h3>Atelier: {{ atelier.atelier }}</h3></p>
+<p><h4>Camada: {{ atelier.adress }}</h4></p>
+<h4>Description:</h4>
+<p><textarea readonly rows="7" cols="90" >{{ atelier.description }}</textarea></p>
+<p><a class="btn2 btn-primary" href="{% url 'atelier:atelier-list' %}">Back to atelier list</a></p>
+{% endblock %}

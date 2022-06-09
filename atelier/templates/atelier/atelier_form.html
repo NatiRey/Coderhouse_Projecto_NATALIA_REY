@@ -1,0 +1,14 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block Arty_content %}
+
+<h2>SAVE/EDIT Atelier</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary" value="SAVE Atelier" />
+</form>
+
+{% endblock %}

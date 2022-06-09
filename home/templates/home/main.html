@@ -1,0 +1,43 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block Arty_content %}
+
+
+{% if user.is_authenticated %}
+<div class="text-center">
+    <h2>W E L C O M E {{ user.username }}</h2>
+    <h3><a style="color: rgb(3, 36, 184)" href="{% url 'user:avatar-load' %}">Cambiar Avatar</a></h3>
+    <img height="160px" src="{{url}}" alt="">
+</div>
+{% endif %}
+<h2>Buscar atelier</h2>
+<hr>
+</hr>
+
+<form action="/search" method="GET">
+    <div>
+        <input type="text" name="search_param" id="course_code_or_name" placeholder="Buscar.."
+        {% if search_param %} value="{{ search_param }}" {% endif %}
+        >
+        <input type="submit" value="Buscar">
+        <a style="color: blue" href="{% url 'home:main' %}"><i class="fa fa-undo"></i></a>
+    </div>
+
+</form>
+
+<hr>
+</hr>
+
+
+{% if atelier_ %}
+<ul>
+    {% for atelier in atelier_ %}
+    <li>
+        Atelier: {{atelier.atelier}}
+        -- Adress: {{atelier.adress}}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

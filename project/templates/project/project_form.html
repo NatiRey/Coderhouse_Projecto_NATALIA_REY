@@ -1,0 +1,17 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block Arty_content %}
+
+<h2>CREATE/EDIT Project {{project.name}} </h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{ project_form.as_p }}
+
+    <input type="submit" class="btn btn-primary" value="Save project" />
+
+</form>
+
+{% endblock %}

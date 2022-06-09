@@ -1,0 +1,23 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block Arty_content %}
+
+<h2>Lista de Entregables</h2>
+<a class="card_custom" href="{% url 'stock:stock-add' %}">ADD STOCK</a>
+<hr></hr>
+<ul>
+    {% for stock in stock %}
+        <li>
+            Entregable: {{stock.name}}
+            -- e-mail: {{stock.due_date}}
+            -- Engregado:
+                {% if stock.is_delivered %}
+                    Si
+                {% else %}
+                    No
+                {% endif%}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
